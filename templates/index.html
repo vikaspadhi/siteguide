@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block content%} 
+
+<div class="container">
+            <div class="row">
+                    <h5 align="center">Vehicle List</h5>
+            </div>
+            <div class="row">
+                <table id="example" class="hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>Vehicle Name</th>
+                <th>Engine Status</th>
+                <th>Average Speed</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in vehicle_list %}
+                <tr>
+                    <td><a href="/detail/{{vehicle.slug}}">{{vehicle.vehicle_name}}</a></td>
+                    <td align="center">{{vehicle.engine_status}}</td>
+                    <td align="center">{{vehicle.average_speed}}</td>
+                    <td><a href="/edit/{{vehicle.slug}}">Edit</a></td>
+                    <td><a href="/delete/{{vehicle.slug}}">Delete</a></td>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+                </table>
+
+            </div>
+        </div>
+
+{%endblock%}

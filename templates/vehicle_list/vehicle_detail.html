@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- {% load speed_calculate %} -->
+{%block content%} 
+
+<div class="container-fluid">
+        <div class="row" >
+            <h5 align="center">{{vehicle.vehicle_name}}</h5>
+        </div>
+        <div class="row">
+          <div class="col s12 m8" style="margin:5px auto">
+            <img
+                class="circle user-profile"
+                src="https://images.unsplash.com/photo-1643789962636-eb6e0c07ddf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=939&q=80"
+            />
+            <a class="waves-effect waves-light btn-large camera_btn" style="width: 40%;float:right;border-radius: 5px;"
+              >Camera 2</a
+            >
+            <a class="waves-effect waves-light btn-large camera_btn" style="width: 40%;float:right;margin: 0 5px;border-radius: 5px;"
+              >Camera 1</a
+            >
+          </div>
+          <div class="col s12 m4 on-off" style="margin: 10px auto">
+            <button data-value="False" data-id="{{vehicle.id}}"
+              class="onoff_btn waves-effect waves-light btn-large transparent black-text {% if vehicle.on_off == 'False' %}active{% endif %} "
+              style="width: 48%; border-radius: 10px"
+              >OFF</button
+            >
+            <button data-value="on" data-id="{{vehicle.id}}"
+              class="onoff_btn waves-effect waves-light btn-large transparent black-text {% if vehicle.on_off == 'on' %}active{% endif %}"
+              style="width: 48%; border-radius: 10px"
+              >ON</button
+            >
+          </div>
+        </div>
+        <div class="row flex">
+          <div class="col s12 m8" style="margin: 10px auto">
+            <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg" alt="" srcset=""
+            width="100%" height="420px" style="object-fit: cover;">
+          </div>
+          <div class="col s12 m4" style="margin: 10px auto">
+            <div class="card ">
+              <div class="card-content white-text">
+                <span class="card-title"> <i class="material-icons">speed</i> Speed</span>
+                <!-- <p>{{vehicle.speed}} Kph</p> -->
+                <div class="sc-gauge">
+<div class="sc-background">
+<div class="sc-percentage" style="transform:rotate({{vehicle.speed | speed_calculate }}deg);"></div>
+<div class="sc-mask"></div>
+<span class="sc-value">{{vehicle.speed}} kph </span>
+</div>
+<span class="sc-min">0</span>
+<span class="sc-max">500</span>
+</div>
+              </div>
+            </div>
+
+            <div class="card ">
+              <div class="card-content white-text">
+                <span class="card-title"><i class="material-icons">av_timer</i> Average Speed</span>
+                <!-- <p>{{vehicle.average_speed}} Kph</p> -->
+                <div class="sc-gauge">
+<div class="sc-background">
+<div class="sc-percentage" style="transform:rotate({{vehicle.average_speed | speed_calculate }}deg);"></div>
+<div class="sc-mask"></div>
+<span class="sc-value">{{vehicle.average_speed}} kph </span>
+</div>
+<span class="sc-min">0</span>
+<span class="sc-max">500</span>
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m4">
+            <div class="card ">
+              <div class="card-content white-text">
+                <span class="card-title"><i class="material-icons">battery_charging_full</i>Engine Status</span>
+                <p>{{vehicle.engine_status}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m4">
+            <div class="card ">
+              <div class="card-content white-text">
+                <span class="card-title"><i class="material-icons">ev_station</i> Fuel Level</span>
+                <p>{{vehicle.fuel_level}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m4">
+            <div class="card ">
+              <div class="card-content white-text">
+                <span class="card-title"><i class="material-icons">opacity</i> Temperature</span>
+                <p>{{vehicle.temperature}}<sup>o</sup> C</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{%endblock%}

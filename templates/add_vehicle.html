@@ -1,0 +1,109 @@
+{% extends 'base.html' %} {% load static %} {%block content%}
+
+<div class="container" style="margin-top: 2rem">
+  <div class="row">
+    <form class="s12" method="POST" action="/add/">
+      {% csrf_token %}
+      <div class="row">
+        <div class="input-field col s12">
+          <input
+            id="Vehicle_Name"
+            name="Vehicle_Name"
+            type="text"
+            value="{{vehicle.vehicle_name}}"
+            required
+          />
+          <label for="Vehicle_Name">Vehicle Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 l6">
+          <input
+            id="speed"
+            name="speed"
+            type="number"
+            class="validate"
+            value="{{vehicle.speed}}"
+            min="0"
+            max="500"
+            required
+          />
+          <label for="speed">Speed in kph</label>
+        </div>
+        <div class="input-field col s12 l6">
+          <input
+            id="average_speed"
+            name="average_speed"
+            type="number"
+            class="validate"
+            value="{{vehicle.average_speed}}"
+            min="0"
+            max="500"
+            required
+          />
+          <label for="average_speed">Average Speed in kph</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 l6">
+          <input
+            id="engine_status"
+            name="engine_status"
+            type="text"
+            class="validate"
+            value="{{vehicle.engine_status}}"
+            required
+          />
+          <label for="engine_status">Engine Status</label>
+        </div>
+        <div class="input-field col s12 l6">
+          <input
+            id="fuel_level"
+            name="fuel_level"
+            type="text"
+            class="validate"
+            value="{{vehicle.fuel_level}}"
+            required
+          />
+          <label for="fuel_level">Fuel Level</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 l6">
+          <input
+            id="temperature"
+            name="temperature"
+            type="text"
+            class="validate"
+            value="{{vehicle.temperature}}"
+            required
+          />
+          <label for="temperature">Temperature</label>
+        </div>
+
+        {%if not vehicle %}
+        <div class="switch col s12 l6">
+          <label>
+            Off
+            <input type="checkbox" name="on_off" />
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+        {%else%}
+        <input type="text" name="slug" value="{{vehicle.slug}}" hidden />
+        {%endif%}
+      </div>
+      <div class="row">
+        <button class="btn waves-effect waves-light" type="submit" name="save">
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <p align="center" class="blue-text darken-4">{{msg}}</p>
+  </div>
+</div>
+
+{%endblock%}
